@@ -1,0 +1,27 @@
+{
+  "name": "simple-home",
+  "version": "1.0.0",
+  "description": "A home management system to simplefy your day-to-day.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "npm run dev": "nodemon index.js",
+    "npm run start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TahaLazreg/simple-home.git"
+  },
+  "author": "Alix Routhier-Lalonde, Taha Mohamed Lazreg, Simon Nakane Marcil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TahaLazreg/simple-home/issues"
+  },
+  "homepage": "https://github.com/TahaLazreg/simple-home#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
