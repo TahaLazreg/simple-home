@@ -1,7 +1,7 @@
 import mysql from "mysql";
 import fs from "fs";
 
-const sql_parameters = {
+let sql_parameters = {
   username: Math.random().toString(16).substr(2, 14),
   password: Math.random().toString(16).substr(2, 14),
   database: Math.random().toString(16).substr(2, 14),
@@ -15,6 +15,9 @@ if (condition == false) {
   fs.writeFile("mysql.json", parameters_to_json, (err, result) => {
     if (err) throw err;
   });
+} else {
+  let data = JSON.parse(fs.readFile("../../backend/constants/mysql.json"));
+  sql_parameters = data;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
