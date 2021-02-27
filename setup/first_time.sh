@@ -10,4 +10,5 @@ npm update
 npm run build
 cd ..
 sudo mysql_secure_installation
+mysql -u root -Bse "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password;"
 node setup/helper/database.js
