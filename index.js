@@ -1,12 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import bodyparser from 'body-parser';
-import sequelize from './backend/sql.js'
-import backend_port from './backend/constants/public_constants.js'
+import express from "express";
+import cors from "cors";
+import bodyparser from "body-parser";
+import sequelize from "./backend/sql.js";
+import backend_port from "./backend/constants/constants.js";
 
 //========== INSTANTIATING THE EXPRESS APP ==========//
 const app = express();
-
 
 //========== MIDDLEWARE ==========//
 
@@ -39,20 +38,21 @@ app.use(
 
 try {
   await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
+  console.log("Connection has been established successfully.");
 } catch (error) {
-  console.error('Unable to connect to the database:', error);
+  console.error("Unable to connect to the database:", error);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //sending the HTML build
 
 app.get("/", (req, res) => {
-    const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-    res.send("Howdy");
-  });
+  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  res.send("Howdy");
+});
 
+//========== STARTING THE HTML SERVER ==========//
 
- //========== STARTING THE HTML SERVER ==========//
-
-app.listen(backend_port, () => console.log(`Server Running on port ${backend_port}`));
+app.listen(backend_port, () =>
+  console.log(`Server Running on port ${backend_port}`)
+);

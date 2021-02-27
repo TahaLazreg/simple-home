@@ -117,4 +117,4 @@ dist
 
 # Private constants
 
-backend/constants/private_constants.js
+backend/constants/sql.json
