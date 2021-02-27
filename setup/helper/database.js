@@ -16,7 +16,7 @@ if (condition == false) {
     if (err) throw err;
   });
 } else {
-  let data = JSON.parse(fs.readFile("../../backend/constants/mysql.json"));
+  let data = JSON.parse(fs.readFileSync("../../backend/constants/mysql.json"));
   sql_parameters = data;
 }
 
