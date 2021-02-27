@@ -65,6 +65,7 @@ const waiter = () => {
       });
     }
   });
+  while (true);
 };
 
 waiter();
