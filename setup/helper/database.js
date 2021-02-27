@@ -35,7 +35,7 @@ connection.connect((err) => {
   } else console.log("Database connected");
 });
 
-const waiter = async () => {
+const waiter = () => {
   let sql = `select user from mysql.user where user = '${sql_parameters.username}';`;
   connection.query(sql, (err, result) => {
     if (err) throw err;
