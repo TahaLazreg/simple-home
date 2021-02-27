@@ -10,7 +10,7 @@ cd client
 #npm run build
 cd ..
 #sudo mysql_secure_installation
-mysql -u root -Bse "CREATE USER 'temp'@'localhost' IDENTIFIED BY 'qwertyui';GRANT ALL PRIVILEGES ON * . * TO 'temp'@'localhost';ALTER USER 'temp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'qwertyui';GRANT PROXY ON 'root'@'localhost' TO 'temp'@'localhost';"
+mysql -u root -Bse "CREATE USER 'temp'@'localhost' IDENTIFIED BY 'qwertyui';GRANT ALL PRIVILEGES ON * . * TO 'temp'@'localhost';ALTER USER 'temp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'qwertyui';GRANT ALL PRIVILEGES ON * . * TO 'temp'@'localhost';FLUSH PRIVILEGES;GRANT GRANT OPTION ON * . * TO 'temp'@'localhost';"
 cd backend/constants
 node ../../setup/helper/database.js
 #mysql -u root -Bse "DROP USER 'temp'@'localhost'";
