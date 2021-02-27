@@ -11,7 +11,6 @@ cd client
 cd ..
 #sudo mysql_secure_installation
 mysql -u root -Bse "CREATE USER 'temp'@'localhost' IDENTIFIED BY 'qwertyui';"
-mysql -u root -Bse "ALTER USER 'temp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'qwertyui';"
 mysql -u root -Bse "GRANT ALL PRIVILEGES ON * . * TO 'temp'@'localhost';"
 mysql -u root -Bse "FLUSH PRIVILEGES;"
 mysql -u root -Bse "GRANT GRANT OPTION ON * . * TO 'temp'@'localhost';"
