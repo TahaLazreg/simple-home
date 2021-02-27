@@ -42,8 +42,7 @@ connection.connect((err) => {
 let sql = `select user from mysql.user where user = '${sql_parameters.username}';`;
 connection.query(sql, (err, result) => {
   if (err) throw err;
-  console.log(result[0]);
-  if (result[0] != null) {
+  if (result[0] === undefined) {
     sql = `CREATE USER '${sql_parameters.username}'@'localhost' IDENTIFIED BY '${sql_parameters.password}';`;
     connection.query(sql, (err, result) => {
       if (err) throw err;
@@ -64,8 +63,7 @@ connection.query(sql, (err, result) => {
 sql = `SELECT schema_name FROM information_schema.schemata where schema_name = '${sql_parameters.database}';`;
 connection.query(sql, (err, result) => {
   if (err) throw err;
-  console.log(result[0]);
-  if (result[0] != null) {
+  if (result[0] === undefined) {
     sql = `CREATE DATABASE ${sql_parameters.database};`;
     connection.query(sql, (err, result) => {
       if (err) throw err;
