@@ -57,6 +57,7 @@ connection.query(sql, (err, result) => {
               sql = `CREATE DATABASE ${sql_parameters.database};`;
               connection.query(sql, (err, result) => {
                 if (err) throw err;
+                console.log("beep");
                 connection.end();
               });
             }
