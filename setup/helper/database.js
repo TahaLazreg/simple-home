@@ -23,6 +23,9 @@ if (condition == false) {
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //initiating mysql
 
+let condition1 = false;
+let condition2 = false;
+
 const connection = mysql.createConnection({
   host: sql_parameters.host,
   user: "temp",
@@ -53,6 +56,7 @@ connection.query(sql, (err, result) => {
     sql = `FLUSH PRIVILEGES;`;
     connection.query(sql, (err, result) => {
       if (err) throw err;
+      condition1 = true;
     });
   }
 });
@@ -64,8 +68,10 @@ connection.query(sql, (err, result) => {
     sql = `CREATE DATABASE ${sql_parameters.database};`;
     connection.query(sql, (err, result) => {
       if (err) throw err;
+      condition2 = true;
     });
   }
 });
 
+while (condition1 === true && condition2 === true) {}
 connection.end();
