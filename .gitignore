@@ -117,4 +117,4 @@ dist
 
 # Private constants
 
-backend/constants/sql.json
+backend/constants/mysql.json

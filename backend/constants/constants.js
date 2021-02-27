@@ -6,7 +6,7 @@ const backend_port = 8000;
 
 //========== SQL SERVER PARAMETERS ==========//
 
-let data = JSON.parse(fs.readFile("./mysql.json"));
+let data = JSON.parse(fs.readFileSync("./backend/constants/mysql.json"));
 
 const sql_options = {
   // TODO: change this
@@ -14,7 +14,7 @@ const sql_options = {
   username: data.username,
   password: data.password,
   host: data.host,
-  dialect: "mariadb",
+  dialect: "mysql",
 };
 
 export default { backend_port, sql_options };

@@ -3,12 +3,12 @@ import sql_options from "./constants/constants.js";
 
 //========== CREATING THE SEQUELIZE OBJECT ==========//
 const sequelize = new Sequelize(
-  sql_options.database,
-  sql_options.username,
-  sql_options.password,
+  sql_options.sql_options.database,
+  sql_options.sql_options.username,
+  sql_options.sql_options.password,
   {
-    host: sql_options.host,
-    dialect: sql_options.dialect,
+    host: sql_options.sql_options.host,
+    dialect: sql_options.sql_options.dialect,
   }
 );
 

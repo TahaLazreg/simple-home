@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyparser from "body-parser";
 import sequelize from "./backend/sql.js";
-import backend_port from "./backend/constants/constants.js";
+import sql_options from "./backend/constants/constants.js";
 
 //========== INSTANTIATING THE EXPRESS APP ==========//
 const app = express();
@@ -35,9 +35,8 @@ app.use(
 );
 
 //---------- connecting to sql database ----------//
-
 try {
-  await sequelize.authenticate();
+  await sequelize.sequelize.authenticate();
   console.log("Connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
@@ -53,6 +52,6 @@ app.get("/", (req, res) => {
 
 //========== STARTING THE HTML SERVER ==========//
 
-app.listen(backend_port, () =>
-  console.log(`Server Running on port ${backend_port}`)
+app.listen(sql_options.backend_port, () =>
+  console.log(`Server Running on port ${sql_options.backend_port}`)
 );
