@@ -9,8 +9,8 @@ const sql_parameters = {
 };
 
 const parameters_to_json = JSON.stringify(sql_parameters);
-
-if (!fs.existsSync("mysql.json")) {
+let condition = fs.existsSync("../../backend/constants/mysql.json");
+if (!condition) {
   fs.writeFile("mysql.json", parameters_to_json, (err, result) => {
     if (err) throw err;
   });
