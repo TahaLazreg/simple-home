@@ -70,6 +70,6 @@ const waiter = async () => {
   return { query1, query2 };
 };
 
-waiter();
-
-connection.end();
+waiter().then(() => {
+  connection.end();
+});
