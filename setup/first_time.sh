@@ -16,4 +16,4 @@ mysql -u root -Bse "FLUSH PRIVILEGES;"
 mysql -u root -Bse "GRANT GRANT OPTION ON * . * TO 'temp'@'localhost';"
 cd backend/constants
 node ../../setup/helper/database.js
-#mysql -u root -Bse "DROP USER 'temp'@'localhost'";
+mysql -u root -Bse "DROP USER 'temp'@'localhost'";

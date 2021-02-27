@@ -10,7 +10,6 @@ let sql_parameters = {
 
 const parameters_to_json = JSON.stringify(sql_parameters);
 let condition = fs.existsSync("../../backend/constants/mysql.json");
-console.log(condition);
 if (condition == false) {
   fs.writeFile("mysql.json", parameters_to_json, (err, result) => {
     if (err) throw err;
@@ -22,9 +21,6 @@ if (condition == false) {
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //initiating mysql
-
-let condition1 = false;
-let condition2 = false;
 
 const connection = mysql.createConnection({
   host: sql_parameters.host,
@@ -46,27 +42,27 @@ connection.query(sql, (err, result) => {
     sql = `CREATE USER '${sql_parameters.username}'@'localhost' IDENTIFIED BY '${sql_parameters.password}';`;
     connection.query(sql, (err, result) => {
       if (err) throw err;
-    });
+      sql = `GRANT ALL PRIVILEGES ON * . * TO '${sql_parameters.username}'@'localhost';`;
+      connection.query(sql, (err, result) => {
+        if (err) throw err;
+        sql = `FLUSH PRIVILEGES;`;
+        connection.query(sql, (err, result) => {
+          if (err) throw err;
 
-    sql = `GRANT ALL PRIVILEGES ON * . * TO '${sql_parameters.username}'@'localhost';`;
-    connection.query(sql, (err, result) => {
-      if (err) throw err;
-    });
-
-    sql = `FLUSH PRIVILEGES;`;
-    connection.query(sql, (err, result) => {
-      if (err) throw err;
-    });
-  }
-});
-
-sql = `SELECT schema_name FROM information_schema.schemata where schema_name = '${sql_parameters.database}';`;
-connection.query(sql, (err, result) => {
-  if (err) throw err;
-  if (result[0] === undefined) {
-    sql = `CREATE DATABASE ${sql_parameters.database};`;
-    connection.query(sql, (err, result) => {
-      if (err) throw err;
+          //the database creating is nested for timing purposes
+          sql = `SELECT schema_name FROM information_schema.schemata where schema_name = '${sql_parameters.database}';`;
+          connection.query(sql, (err, result) => {
+            if (err) throw err;
+            if (result[0] === undefined) {
+              sql = `CREATE DATABASE ${sql_parameters.database};`;
+              connection.query(sql, (err, result) => {
+                if (err) throw err;
+                connection.end();
+              });
+            }
+          });
+        });
+      });
     });
   }
 });
