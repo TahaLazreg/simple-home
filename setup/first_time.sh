@@ -10,5 +10,7 @@ npm update
 npm run build
 cd ..
 sudo mysql_secure_installation
-mysql -u root -Bse "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password;"
-node setup/helper/database.js
+mysql -u root -Bse "CREATE USER 'temp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'qwertyui';GRANT ALL PRIVILEGES ON * . * TO 'temp'@'localhost';FLUSH PRIVILEGES;"
+cd backend/constants
+node ../../setup/helper/database.js
+mysql -u root -Bse "DROP USER 'temp'@'localhost';"

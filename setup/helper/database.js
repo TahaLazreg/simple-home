@@ -10,16 +10,19 @@ const sql_parameters = {
 
 const parameters_to_json = JSON.stringify(sql_parameters);
 
-fs.writeFile("mysql.json", parameters_to_json, (err, result) => {
-  if (err) throw err;
-});
+if (!fs.existsSync("mysql.json")) {
+  fs.writeFile("mysql.json", parameters_to_json, (err, result) => {
+    if (err) throw err;
+  });
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //initiating mysql
 
 const connection = mysql.createConnection({
   host: sql_parameters.host,
-  user: "root",
+  user: "temp",
+  password: "qwertyui",
   multipleStatements: true,
 });
 
