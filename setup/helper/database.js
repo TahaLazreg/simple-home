@@ -52,6 +52,7 @@ connection.query(sql, (err, result) => {
     sql = `FLUSH PRIVILEGES;`;
     connection.query(sql, (err, result) => {
       if (err) throw err;
+      connection.end();
     });
   }
 });
