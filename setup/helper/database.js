@@ -42,28 +42,27 @@ connection.query(sql, (err, result) => {
     sql = `CREATE USER '${sql_parameters.username}'@'localhost' IDENTIFIED BY '${sql_parameters.password}';`;
     connection.query(sql, (err, result) => {
       if (err) throw err;
-      sql = `GRANT ALL PRIVILEGES ON * . * TO '${sql_parameters.username}'@'localhost';`;
-      connection.query(sql, (err, result) => {
-        if (err) throw err;
-        sql = `FLUSH PRIVILEGES;`;
-        connection.query(sql, (err, result) => {
-          if (err) throw err;
+    });
 
-          //the database creating is nested for timing purposes
-          sql = `SELECT schema_name FROM information_schema.schemata where schema_name = '${sql_parameters.database}';`;
-          connection.query(sql, (err, result) => {
-            if (err) throw err;
-            if (result[0] === undefined) {
-              sql = `CREATE DATABASE ${sql_parameters.database};`;
-              connection.query(sql, (err, result) => {
-                if (err) throw err;
-                console.log("beep");
-                connection.end();
-              });
-            }
-          });
-        });
-      });
+    sql = `GRANT ALL PRIVILEGES ON * . * TO '${sql_parameters.username}'@'localhost';`;
+    connection.query(sql, (err, result) => {
+      if (err) throw err;
+    });
+
+    sql = `FLUSH PRIVILEGES;`;
+    connection.query(sql, (err, result) => {
+      if (err) throw err;
+    });
+  }
+});
+
+sql = `SELECT schema_name FROM information_schema.schemata where schema_name = '${sql_parameters.database}';`;
+connection.query(sql, (err, result) => {
+  if (err) throw err;
+  if (result[0] === undefined) {
+    sql = `CREATE DATABASE ${sql_parameters.database};`;
+    connection.query(sql, (err, result) => {
+      if (err) throw err;
     });
   }
 });
