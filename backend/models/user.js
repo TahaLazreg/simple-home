@@ -1,15 +1,3 @@
-const {Model, DataTypes} = require('sequelize');
-import sequelize from '../sql';
-import Calendar from './calendar'
+import User from '../sql.js';
 
-//---------- User definition ----------//
-class User extends Model {}
-User.init({
-  username: DataTypes.STRING,
-  password: DataTypes.STRING
-}, { sequelize, modelName: 'user' });
-
-User.hasOne(Calendar);
-
-//---------- User functions ----------//
 

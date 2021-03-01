@@ -1,18 +1,52 @@
-import {Sequelize} from 'sequelize';
-import options from './constants.js'
+import { Sequelize } from "sequelize";
+import sql_options from "./constants/constants.js";
 
-//creating the sequelize object
-const sequelize = new Sequelize(options.database, options.username, options.password, {
-  host: options.host,
-  dialect: options.dialect
-});
+//========== CREATING THE SEQUELIZE OBJECT ==========//
+const sequelize = new Sequelize(
+  sql_options.sql_options.database,
+  sql_options.sql_options.username,
+  sql_options.sql_options.password,
+  {
+    host: sql_options.sql_options.host,
+    dialect: sql_options.sql_options.dialect,
+  }
+);
 
-//try connection
-try {
-  await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
+//========== CLASS DEFINITIONS ==========//
 
-export default sequelize;
+//---------- Planner definition ----------//
+class Planner extends Sequelize.Model {}
+Planner.init(
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: Sequelize.DataTypes.STRING,
+    password: Sequelize.DataTypes.STRING,
+  },
+  { sequelize, modelName: "planner" }
+);
+
+//---------- User definition ----------//
+
+class User extends Sequelize.Model {}
+User.init(
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: Sequelize.DataTypes.STRING,
+    password: Sequelize.DataTypes.STRING,
+  },
+  { sequelize, modelName: "user" }
+);
+
+User.hasOne(Planner);
+
+//========== EXPORTS ==========//
+
+export default { sequelize, User, Planner };
