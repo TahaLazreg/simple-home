@@ -4,7 +4,7 @@ We make stuff to make life in ur house ez
 
 # For developers:
 
-1. Run the `/setup/first_time.sh` file on the rpi ( if asked about mariadb questions, always answer no and empty passwords but for the reload tables question) WITH SUDO PRIVILEGES.
+1. Run the `/first_time.sh` file within the `/setup` directory on the rpi ( if asked about mariadb questions, always answer no and empty passwords but for the reload tables question) WITH SUDO PRIVILEGES.
 2. On your Windows computer, run the `/setup/dev.ps1` file.
 3. In the mysql.json file now on your computer, change the host parameter from ```localhost``` to the ip address of the raspberry pi.
 4. Run the `/setup/dev.sh` file on the rpi WITH SUDO PRIVILEGES (but this is untested, may be buggy) and skip steps 5-8 OR ignore this step and continue following the instructions .
