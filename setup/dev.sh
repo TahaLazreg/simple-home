@@ -6,7 +6,7 @@ cd ..
 cd backend/constants
 node ../../setup/helper/dev.js
 mysql -u root -Bse "DROP USER 'temp'@'localhost'";
-echo '[mysqld]' >> /etc/mysql/my.cnf
-echo 'skip-networking=0' >> /etc/mysql/my.cnf
-echo 'skip-bind-address' >> /etc/mysql/my.cnf
+echo - e "[mysqld]\n" >> /etc/mysql/my.cnf
+echo -e "skip-networking=0" >> /etc/mysql/my.cnf
+echo -e "skip-bind-address" >> /etc/mysql/my.cnf
 sudo systemctl restart mysql
